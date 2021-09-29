@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>macro</title>
+</head>
+<body>
+    {% macro my_macro(name, password) %}
+    用户名：<input type="text" value="{{ name }}"><br>
+    密码：<input type="password" value="{{ password }}">
+    {% endmacro %}
+
+    {{ my_macro('kohama','123321') }}
+    {% import '07_otherMacro.html' as other %}
+    {{ other.newLabel() }}
+</body>
+</html>

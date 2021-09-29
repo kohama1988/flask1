@@ -21,6 +21,14 @@ def listReverse(li):
     li.reverse()
     return li
 
+@app.template_filter('addOne')
+def addOne(s):
+    res = ''
+    for item in s:
+        res = res + str(int(item) + 1)
+    return res
+
+
 @app.route('/')
 def hello_world():
     return render_template('06_customerFilter.html')
