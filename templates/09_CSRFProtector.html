@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRFProtector</title>
+</head>
+<body>
+    <form action="" method="post">
+        {#需要使用hidden属性的csrf_token来与服务器交互#}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        用户名 <input type="text" name="username"> <br>
+        密码 <input type="password" name="password"><br>
+        <input type="submit" value="注册">
+    </form>
+</body>
+</html>
