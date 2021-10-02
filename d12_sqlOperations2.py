@@ -12,6 +12,14 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
 
+    users = db.relationship('User')
+    """
+    relationship方便数据库的关联查询
+    特点：不会再数据库中产生实体字段， 关系属性需要在一方添加，不是多方，本例中在Role中添加
+    比如：查询role角色为1的所有用户
+    Role.query.get(1).users 即可
+    """
+
     def __repr__(self):
         return '<roleName: {}>'.format(self.name)
 
