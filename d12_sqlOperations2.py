@@ -12,12 +12,24 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
 
-    users = db.relationship('User')
+    users = db.relationship('User', backref='role', lazy='dynamic')
     """
     relationship方便数据库的关联查询
+    用途: 知道了角色的情况下，快速查询出哪些用户扮演了该角色
     特点：不会再数据库中产生实体字段， 关系属性需要在一方添加，不是多方，本例中在Role中添加
     比如：查询role角色为1的所有用户
     Role.query.get(1).users 即可
+    """
+    """
+    backref添加反向属性，快速查询
+    用途: 知道用户的情况下，快速查询出哪些用户扮演了哪个角色
+    User.query.get(1).role
+    """
+    """
+    lazy属性 默认为subquery，如果不自动子查询，则设置为dynamic
+    user = User.query.get(1)
+    user.role 返回一个结果集，使用all()方法才返回一个结果列表
+    
     """
 
     def __repr__(self):
