@@ -5,18 +5,23 @@
     <title>Library</title>
 </head>
 <body>
-<form action="#" method="post">
+<form action={{ url_for('add_book') }} method="post">
+    <input type="hidden" name="csrf_token" value={{ csrf_token() }}>
     作者：<input type="text" name="author"> <br>
     书名：<input type="text" name="book"><br>
     <input type="submit" value="登录图书">
+    {% if get_flashed_messages() %}
+        {{ get_flashed_messages()[0] }}
+    {% endif %}
+
     <hr>
 
     <ul>
         {% for author in authors %}
-            <li>{{ author.name }}</li>
+            <li>{{ author.name }} <a href={{ url_for('delete_author', id=author.id) }}>删除</a></li>
             <ul>
             {% for book in author.books %}
-                <li>{{ book.name }}</li>
+                <li>{{ book.name }} <a href={{ url_for('delete_book',id=book.id) }}>删除</a></li>
             {% endfor %}
             </ul>
         {% endfor %}
