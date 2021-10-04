@@ -20,7 +20,7 @@ pip install flask-mysqldb/pymysql 与MySQL的连接
 app = Flask(__name__)
 
 # 设置数据库的配置信息
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:aisin-aw23@127.0.0.1:3306/data36'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:{}@127.0.0.1:3306/data36'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # 创建SQLAlchemy对象，关联app
