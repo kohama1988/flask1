@@ -37,6 +37,23 @@ class Course(db.Model):
 db.drop_all()
 db.create_all()
 
+stu1 = Student(name='张三')
+stu2 = Student(name='李四')
+stu3 = Student(name='王五')
+
+cou1 = Course(name='物理')
+cou2 = Course(name='化学')
+cou3 = Course(name='生物')
+
+stu1.courses = [cou2, cou3]
+stu2.courses = [cou2]
+stu3.courses = [cou1, cou2, cou3]
+
+db.session.add_all([stu1, stu2, stu3])
+db.session.add_all([cou1, cou2, cou3])
+
+db.session.commit()
+
 @app.route('/')
 def hello_world():
     return 'Hi, kohama!!'
